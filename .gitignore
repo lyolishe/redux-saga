@@ -21,3 +21,11 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+/.eslintcache
+/.idea/modules.xml
+/.idea/inspectionProfiles/Project_Default.xml
+/src/react-app-env.d.ts
+/.idea/redux-saga.iml
+/.idea/vcs.xml
+/.idea/watcherTasks.xml
+/.idea/workspace.xml
