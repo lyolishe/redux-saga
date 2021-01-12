@@ -1,17 +1,24 @@
-import React from 'react';
+import React from "react";
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import App from "./App";
+import {createStore, applyMiddleware} from "redux";
+import createSagaMiddleware from 'redux-saga';
+import {Provider} from "react-redux";
+import {reducer} from "./redux/city/reducers";
+import {watchFetchWeather} from "./redux/city/sagas";
+
+const root = document.getElementById('root');
+
+const sagaMiddleware = createSagaMiddleware()
+const store = createStore(
+    reducer,
+    applyMiddleware(sagaMiddleware),
+);
+sagaMiddleware.run(watchFetchWeather)
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+    <Provider store={store}>
+        <App/>
+    </Provider>,
+    root
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
