@@ -1,7 +1,9 @@
 import {WeatherStore} from "../../types/types";
 import {CityActions} from "./actions";
 
-const initialState: WeatherStore = {
+const saved = JSON.parse(localStorage.getItem('store') || 'null');
+
+const initialState: WeatherStore = saved?? {
     hasError: false,
     weather: {}
 }

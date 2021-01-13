@@ -9,8 +9,8 @@ export function* watchFetchWeather() {
 function* fetchWeather(action: any) {
     const { city } = action.payload;
     try {
-        const data = yield call(WeatherApi.get, city)
-        yield put(cityFetched(city, data))
+        const data = yield call(WeatherApi.get, city);
+        yield put(cityFetched(city, data));
     } catch (e) {
         yield put(cityFetchFailed(city));
     }

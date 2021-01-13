@@ -17,6 +17,7 @@ const WeatherCard: React.FC = () => {
         dispatch(removeCity(city));
     }, [dispatch]);
 
+    console.log(weather)
     return (
         <div className={styles.root}>
             {

@@ -6,13 +6,14 @@ import createSagaMiddleware from 'redux-saga';
 import {Provider} from "react-redux";
 import {reducer} from "./redux/city/reducers";
 import {watchFetchWeather} from "./redux/city/sagas";
+import putLocalStorage from "./redux/middleware";
 
 const root = document.getElementById('root');
 
 const sagaMiddleware = createSagaMiddleware()
 const store = createStore(
     reducer,
-    applyMiddleware(sagaMiddleware),
+    applyMiddleware(sagaMiddleware, putLocalStorage),
 );
 sagaMiddleware.run(watchFetchWeather)
 
