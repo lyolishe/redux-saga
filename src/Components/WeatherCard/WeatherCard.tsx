@@ -4,7 +4,7 @@ import {useDispatch, useSelector} from "react-redux";
 
 //Store
 import {selectWeather} from "../../redux/city/selectors";
-import {removeCity} from "../../redux/city/actions";
+import {addCity, removeCity} from "../../redux/city/actions";
 
 //Styles
 import styles from './WeatherCard.module.scss';
@@ -17,7 +17,10 @@ const WeatherCard: React.FC = () => {
         dispatch(removeCity(city));
     }, [dispatch]);
 
-    console.log(weather)
+    const handleRefresh = React.useCallback((city: string) => () => {
+        dispatch(addCity(city));
+    }, [dispatch])
+
     return (
         <div className={styles.root}>
             {
@@ -34,8 +37,13 @@ const WeatherCard: React.FC = () => {
                                     давление: {main?.pressure} Па<br/>
                                 </div>
                             </div>
-                            <div className={styles.control} onClick={handleDelete(city)}>
-                                &times;
+                            <div className={styles.control}>
+                                <p onClick={handleDelete(city)}>
+                                    &times;
+                                </p>
+                                <p onClick={handleRefresh(city)}>
+                                    &#x21bb;
+                                </p>
                             </div>
                         </div>
                     )
